@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Челлендж 10/66</title>
+<meta name="description" content="Челлендж 10/66 Ксении Каплан: одно задание на 10 минут каждый день в течение 66 дней. Без насилия над собой и выгорания. Третий поток.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xclusivem.github.io/10-66/">
+<meta property="og:title" content="Челлендж 10/66">
+<meta property="og:description" content="Одно задание на 10 минут каждый день в течение 66 дней. Без насилия над собой и выгорания.">
+<meta property="og:image" content="https://xclusivem.github.io/10-66/hero-portrait.jpg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1352">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EDEDED">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=PT+Mono&display=swap">
+<style>
+/* Territory: "сторис-лента". The audience arrives from stories on a phone, so the page
+   keeps that gesture: a segmented progress bar across the top, one idea per screen,
+   a highlighter marker on the words that carry the argument, and Telegram blue used
+   for nothing except the button that leads to Telegram.
+   Fonts verified against Google Fonts metadata: Onest and PT Mono both ship Cyrillic.
+   Neither has a true italic, so there is no italic anywhere on this page. */
+:root {
+  color-scheme: light;
+  --bg: #EDEDED;
+  --card: #FFFFFF;
+  --card-2: #F6F6F6;
+  --ink: #1A1A1A;
+  --ink-2: #4E4E4E;
+  --ink-3: #828282;
+  --line: #DCDCDC;
+  --line-2: #C9C9C9;
+  --tg: #2AABEE;
+  --tg-deep: #1B8FCB;
+  --mark: #FFE14D;
+  --c-body: #C8F560;
+  --c-food: #8FE3C4;
+  --c-learn: #B9A5FF;
+  --c-work: #7CC8FF;
+  --c-money: #FFD27A;
+  --c-calm: #FFB3C7;
+  --c-make: #FF8A65;
+  --sans: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: "PT Mono", ui-monospace, Menlo, Consolas, monospace;
+  --gut: max(18px, env(safe-area-inset-left, 0px));
+  --gut-r: max(18px, env(safe-area-inset-right, 0px));
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 54px; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 17px; line-height: 1.6;
+  padding-left: var(--gut); padding-right: var(--gut-r); padding-bottom: 80px;
+  overflow-x: hidden; -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; z-index: 70; height: env(safe-area-inset-top, 0px); background: var(--bg); }
+@media (min-width: 820px) { body { padding-bottom: 0; } }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--tg); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--mark); color: var(--ink); }
+.wrap { max-width: 1060px; margin: 0 auto; }
+
+h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.02; text-wrap: balance; }
+h1 { font-size: clamp(34px, 8.5vw, 72px); }
+h2 { font-size: clamp(28px, 5.6vw, 52px); }
+h3 { font-size: clamp(20px, 2.6vw, 27px); font-weight: 700; letter-spacing: -.02em; }
+p { margin: 0; text-wrap: pretty; }
+.mark { background: linear-gradient(transparent 56%, var(--mark) 56%); padding: 0 .1em; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.lead { font-size: clamp(17px, 2.1vw, 21px); line-height: 1.5; color: var(--ink-2); }
+.muted { color: var(--ink-2); }
+.small { font-size: 15px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 16px 28px; border: 2px solid transparent; border-radius: 16px; font-size: 17px; font-weight: 700; letter-spacing: -.01em; transition: background-color .18s, border-color .18s, transform .18s, color .18s; }
+.btn-tg { background: var(--tg); color: #fff; }
+.btn-tg:hover { background: var(--tg-deep); transform: translateY(-2px); }
+.btn:active { transform: scale(.98); }
+.btn-ghost { border-color: var(--line-2); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-sm { min-height: 44px; padding: 10px 18px; font-size: 15px; border-radius: 12px; }
+
+/* stories progress bar */
+.progress { position: fixed; inset: env(safe-area-inset-top, 0px) 0 auto; z-index: 60; display: flex; gap: 3px; padding: 10px var(--gut-r) 10px var(--gut); background: rgba(237, 237, 237, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.seg { flex: 1; height: 3px; min-width: 0; border-radius: 2px; background: var(--line-2); overflow: hidden; border: 0; padding: 0; cursor: pointer; }
+.seg i { display: block; height: 100%; width: 0; background: var(--ink); border-radius: 2px; transition: width .15s linear; }
+.seg:hover i { background: var(--tg); }
+
+/* slides */
+.slide { padding: clamp(56px, 9vw, 108px) 0; }
+.slide.first { min-height: 86svh; display: flex; align-items: center; padding-top: clamp(40px, 7vw, 72px); }
+main > section + section { border-top: 1px solid var(--line); }
+.head { display: grid; gap: 16px; max-width: 740px; margin-bottom: clamp(28px, 4vw, 52px); }
+
+/* quiet interstitial: a pause between stories, almost a whisper */
+.quiet { padding: clamp(44px, 7.5vw, 90px) 0; }
+.quiet p { max-width: 18ch; margin: 0 auto; text-align: center; font-size: clamp(25px, 5vw, 44px); font-weight: 800; letter-spacing: -.035em; line-height: 1.08; }
+.quiet p .mark { padding: 0 .12em; }
+.quiet.wide p { max-width: 30ch; font-size: clamp(19px, 2.6vw, 26px); font-weight: 600; letter-spacing: -.02em; line-height: 1.4; color: var(--ink-2); }
+
+/* arithmetic */
+.maths { display: grid; gap: 12px; }
+@media (min-width: 720px) { .maths { grid-template-columns: 1.2fr 1fr 1fr; } }
+.m-card { min-width: 0; padding: 26px; border-radius: 20px; background: var(--card); }
+.m-card .k { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.m-card .v { margin-top: 10px; font-size: clamp(34px, 5vw, 50px); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.m-card .s { margin-top: 10px; font-size: 15px; color: var(--ink-2); line-height: 1.5; }
+.m-card.lead-card { background: var(--ink); color: #fff; }
+.m-card.lead-card .k { color: var(--mark); }
+.m-card.lead-card .s { color: #BDBDBD; }
+.m-card.dim { background: var(--card-2); }
+.m-card.dim .v { color: var(--ink-3); }
+
+/* "я рядом" note before the price */
+.beside { padding: 26px; border-radius: 20px; background: var(--card); display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 16px; align-items: start; }
+.beside img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+.beside p { font-size: 16.5px; line-height: 1.55; }
+
+/* hero */
+.hero { display: grid; gap: clamp(26px, 4vw, 48px); align-items: center; width: 100%; }
+@media (min-width: 880px) { .hero { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); } }
+.hero h1 { margin: 14px 0 20px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 26px; }
+.hero-by { display: flex; align-items: center; gap: 11px; margin-top: 24px; }
+.hero-by img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; }
+.hero-by .t { font-size: 15px; line-height: 1.4; color: var(--ink-3); }
+.hero-by .t b { display: block; font-size: 16px; color: var(--ink); }
+
+.shot { position: relative; border-radius: 22px; overflow: hidden; background: #DADADA; aspect-ratio: 9 / 13; }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
+.shot-cap { position: absolute; inset: auto 14px 14px; padding: 13px 16px; border-radius: 14px; background: rgba(255, 255, 255, .93); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 15px; line-height: 1.4; }
+.shot-cap b { font-weight: 700; }
+
+/* three facts */
+.facts { display: grid; gap: 12px; }
+@media (min-width: 720px) { .facts { grid-template-columns: repeat(3, 1fr); } }
+.fact { min-width: 0; padding: 26px; border-radius: 20px; background: var(--card); }
+.fact b { display: block; font-size: clamp(32px, 4.4vw, 44px); font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.fact span { display: block; margin-top: 10px; font-size: 15.5px; color: var(--ink-2); }
+
+/* steps */
+.steps { display: grid; gap: 12px; }
+@media (min-width: 720px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.step { min-width: 0; padding: 26px; border-radius: 20px; background: var(--card); }
+.step .n { font-family: var(--mono); font-size: 13px; color: var(--ink-3); }
+.step h3 { margin: 14px 0 9px; font-size: 19px; }
+.step p { font-size: 15.5px; color: var(--ink-2); line-height: 1.55; }
+.step.key { background: var(--ink); color: #F2F2F2; }
+.step.key .n { color: var(--mark); }
+.step.key h3 { color: #fff; }
+.step.key p { color: #C9C9C9; }
+
+/* 66 field */
+.field { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 5px; }
+.cell { aspect-ratio: 1; min-width: 0; display: grid; place-items: center; border-radius: 5px; background: #DFDFDF; font-family: var(--mono); font-size: clamp(8px, 1vw, 10px); color: #9A9A9A; }
+.cell.done { background: var(--ink); color: #fff; }
+.cell.easy { background: var(--mark); color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 14px; color: var(--ink-3); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 11px; height: 11px; border-radius: 3px; flex: none; display: block; }
+
+/* source card */
+.source { padding: 28px; border-radius: 20px; background: var(--card); }
+.source blockquote { margin: 0; font-size: clamp(18px, 2.3vw, 23px); font-weight: 600; line-height: 1.38; letter-spacing: -.02em; }
+.source .cite { margin-top: 16px; font-size: 14px; line-height: 1.55; color: var(--ink-3); }
+.source .cite a { color: var(--tg); }
+.nums { display: grid; gap: 10px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+@media (min-width: 520px) { .nums { grid-template-columns: repeat(3, 1fr); } }
+.nums div { min-width: 0; }
+.nums .k { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.nums .v { margin-top: 4px; font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+
+/* goal menu — bento */
+.tiles { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 680px) { .tiles { grid-template-columns: repeat(4, 1fr); } }
+.tile { min-width: 0; padding: 20px 18px; border: 0; border-radius: 18px; text-align: left; font-weight: 700; font-size: 16px; line-height: 1.25; letter-spacing: -.01em; color: var(--ink); background: var(--card); transition: transform .16s, box-shadow .16s; }
+.tile:hover { transform: translateY(-2px); }
+.tile .c { display: block; width: 26px; height: 26px; border-radius: 9px; margin-bottom: 14px; }
+.tile .sub { display: block; margin-top: 8px; font-size: 13.5px; font-weight: 500; color: var(--ink-3); }
+.tile:active { transform: scale(.98); }
+.tile[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--ink); }
+.tile[aria-pressed="true"] .c::after { content: "✓"; display: grid; place-items: center; width: 100%; height: 100%; font-size: 15px; font-weight: 800; color: rgba(26, 26, 26, .75); }
+@media (min-width: 680px) { .tile.wide { grid-column: span 2; } }
+
+/* own goal */
+.own { margin-top: 14px; padding-top: 16px; border-top: 1px solid var(--line); }
+.own label { display: block; font-size: 14px; color: var(--ink-3); margin-bottom: 9px; }
+.own-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.own input { flex: 1; min-width: 200px; padding: 14px 16px; font-size: 16px; border: 2px solid var(--line-2); border-radius: 14px; background: var(--card-2); outline: none; transition: border-color .18s; }
+.own input:focus { border-color: var(--tg); background: #fff; }
+.own-out { margin-top: 14px; font-size: 16.5px; line-height: 1.5; }
+.own-out b { font-weight: 700; }
+.goals { margin-top: 12px; padding: 24px; border-radius: 20px; background: var(--card); }
+.goals-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.goals-head .c { width: 30px; height: 30px; border-radius: 10px; flex: none; }
+.goals-head h3 { font-size: 21px; }
+.goal { display: grid; gap: 6px 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+@media (min-width: 620px) { .goal { grid-template-columns: 1fr auto 1fr; align-items: center; } }
+.goal .big { font-size: 16.5px; color: var(--ink-3); }
+.goal .arr { color: var(--line-2); display: none; }
+@media (min-width: 620px) { .goal .arr { display: block; } }
+.goal .ten { font-size: 16.5px; font-weight: 700; letter-spacing: -.01em; }
+
+/* not for you */
+.nope { display: grid; gap: 10px; }
+@media (min-width: 760px) { .nope { grid-template-columns: 1fr 1fr; } }
+.nope-row { min-width: 0; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; padding: 18px 20px; border-radius: 16px; background: var(--card-2); border: 1px dashed var(--line-2); }
+.nope-row .x { color: var(--ink-3); padding-top: 2px; }
+.nope-row b { display: block; font-size: 16px; }
+.nope-row span { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; }
+
+/* calendar */
+.cal-top { display: grid; gap: 10px; margin-bottom: 24px; }
+@media (min-width: 720px) { .cal-top { grid-template-columns: repeat(3, 1fr); } }
+.cal-stat { padding: 22px; border-radius: 18px; background: var(--card); }
+.cal-stat .k { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.cal-stat .v { margin-top: 8px; font-size: clamp(24px, 3.2vw, 32px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+.cal-stat.fin { background: var(--ink); color: #fff; }
+.cal-stat.fin .k { color: var(--mark); }
+.months { display: grid; gap: 12px; }
+@media (min-width: 680px) { .months { grid-template-columns: repeat(3, 1fr); } }
+.month { min-width: 0; padding: 18px; border-radius: 18px; background: var(--card); }
+.month h4 { margin: 0 0 12px; font-size: 16px; font-weight: 700; }
+.dows, .grid7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.dows span { text-align: center; font-family: var(--mono); font-size: 10px; color: var(--ink-3); padding-bottom: 5px; }
+.d { aspect-ratio: 1; min-width: 0; display: grid; place-items: center; border-radius: 5px; font-family: var(--mono); font-size: clamp(9px, 1vw, 11px); color: #B0B0B0; }
+.d.on { background: #E0E0E0; color: var(--ink-2); }
+.d.s { background: var(--mark); color: var(--ink); font-weight: 700; }
+.d.f { background: var(--ink); color: #fff; font-weight: 700; }
+
+/* author */
+.author { display: grid; gap: clamp(26px, 4vw, 48px); align-items: center; }
+@media (min-width: 880px) { .author { grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); } }
+.a-list { display: grid; gap: 16px; margin-top: 22px; }
+.a-item { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 14px; }
+.a-item .n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; background: var(--mark); font-family: var(--mono); font-size: 13px; }
+.a-item p { font-size: 16px; color: var(--ink-2); }
+.a-item p b { color: var(--ink); font-weight: 700; }
+.a-quote { margin-top: 22px; padding: 22px; border-radius: 18px; background: var(--card); font-size: 18px; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
+
+/* deal + barter + price */
+.cols { display: grid; gap: 12px; }
+@media (min-width: 820px) { .cols { grid-template-columns: 1fr 1fr; } }
+.col { padding: 28px; border-radius: 20px; background: var(--card); }
+.col.dark { background: var(--ink); color: #E6E6E6; }
+.col.dark h3 { color: #fff; }
+.col h3 { margin-bottom: 16px; }
+.col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.col li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; font-size: 15.5px; line-height: 1.55; }
+.col li b { font-weight: 700; }
+.col .tick { color: var(--tg); padding-top: 2px; }
+.col.dark .tick { color: var(--mark); }
+.col.dark li { color: #C9C9C9; }
+.col.dark li b { color: #fff; }
+
+.barter { margin-top: 12px; padding: 28px; border-radius: 20px; background: var(--mark); }
+.barter h3 { margin-bottom: 12px; }
+.barter p { font-size: 16.5px; max-width: 62ch; }
+
+.price { margin-top: 12px; display: grid; gap: 24px; padding: clamp(26px, 4vw, 44px); border-radius: 22px; background: var(--card); }
+@media (min-width: 860px) { .price { grid-template-columns: minmax(0, 1fr) minmax(0, 340px); align-items: center; } }
+.price h2 { font-size: clamp(26px, 4vw, 40px); }
+.price > div > p { margin-top: 14px; max-width: 44ch; color: var(--ink-2); }
+.price-box { display: grid; gap: 12px; padding: 24px; border-radius: 18px; background: var(--card-2); }
+.p-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--ink-3); }
+.p-row b { font-size: 24px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }
+.price .btn-tg { width: 100%; margin-top: 4px; }
+.p-note { text-align: center; font-size: 14px; color: var(--ink-3); }
+.p-note a { color: var(--tg); }
+
+/* faq */
+.faq { max-width: 860px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px 0; list-style: none; font-size: 17.5px; font-weight: 700; letter-spacing: -.01em; cursor: pointer; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq .sign { flex: none; font-family: var(--mono); font-size: 20px; color: var(--tg); }
+.faq details[open] .sign::after { content: "−"; }
+.faq details:not([open]) .sign::after { content: "+"; }
+.faq details p { max-width: 68ch; padding: 0 0 20px; font-size: 16px; color: var(--ink-2); }
+
+/* final */
+.final { padding: clamp(44px, 7vw, 84px) clamp(20px, 4vw, 48px); border-radius: 24px; background: var(--ink); color: #fff; text-align: center; }
+.final h2 { max-width: 16ch; margin: 14px auto 0; color: #fff; }
+.final > p { max-width: 42ch; margin: 16px auto 26px; color: #BDBDBD; }
+.final .eyebrow { color: var(--mark); }
+.final .pirozhok { margin-top: 22px; font-size: 17px; color: var(--mark); font-weight: 600; }
+
+footer { padding: 28px 0 44px; }
+footer .wrap { display: grid; gap: 10px; font-size: 14px; color: var(--ink-3); }
+@media (min-width: 760px) { footer .wrap { grid-template-columns: 1fr auto; align-items: center; } }
+footer a { color: var(--tg); }
+
+/* mobile dock */
+.dock { position: fixed; inset: auto 0 0; z-index: 55; display: flex; align-items: center; gap: 12px; padding: 10px var(--gut-r) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gut); background: rgba(237, 237, 237, .96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); }
+.dock .m { flex: 1; min-width: 0; font-size: 13px; line-height: 1.3; color: var(--ink-3); }
+.dock .m b { display: block; font-size: 15px; color: var(--ink); }
+.dock .btn { min-height: 46px; padding: 12px 20px; font-size: 15px; }
+@media (min-width: 820px) { .dock { display: none; } }
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<main>
+
+  <!-- 1 -->
+  <section class="slide first" data-name="Начало">
+    <div class="wrap hero">
+      <div>
+        <span class="eyebrow">Третий поток · старт <span id="e-start">в понедельник</span></span>
+        <h1>Все хотят начать новую жизнь с понедельника.<br>А мы <span class="mark">возьмём и начнём</span>.</h1>
+        <p class="lead">Одно маленькое задание на 10 минут каждый день в течение 66 дней. Без насилия над собой и выгорания.</p>
+        <div class="hero-actions">
+          <a class="btn btn-tg" href="https://t.me/ksenia_kaplan" target="_blank" rel="noopener">
+            Написать в Telegram
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#menu">Выбрать десяточку</a>
+        </div>
+        <div class="hero-by">
+          <img src="author-avatar.jpg" alt="" aria-hidden="true" width="220" height="220">
+          <span class="t"><b>Ксения Каплан</b>Веду челлендж и иду его вместе с вами</span>
+        </div>
+      </div>
+      <figure class="shot" style="margin:0">
+        <img src="hero-portrait.jpg" width="1000" height="1352" alt="Ксения Каплан держит объёмные красные буквы 10/66" fetchpriority="high">
+        <figcaption class="shot-cap"><b>66 дней. 66 подходов.</b> Это не про силу воли, а про частоту.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" data-name="Суть">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Суть</span>
+        <h2>Слон целиком не лезет.<br>А <span class="mark">ложечками</span> вполне</h2>
+        <p class="lead">Мы не ставим огромных целей и не требуем героизма. Берём одно направление и каждый день отдаём ему десять минут.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>10 минут</b><span>Это ничто. Мозг не успевает включить лень. Ленту вы листаете дольше, и это не требует усилия.</span></div>
+        <div class="fact"><b>66 дней</b><span>В среднем столько нужно, чтобы перестать себя заставлять. У всех по-разному, и это нормально.</span></div>
+        <div class="fact"><b>1 задание</b><span>Одна десяточка, а не три. Проверено на себе: брать две разом это перебор.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiet">
+    <p class="wrap">Мы не пашем. Мы просто не бросаем <span class="mark">два дня подряд</span>.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" data-name="Система">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Как это устроено</span>
+        <h2>Шесть шагов, и дальше<br>система работает сама</h2>
+      </div>
+      <div class="steps" id="steps"></div>
+    </div>
+  </section>
+
+  <section class="quiet wide">
+    <p class="wrap">Я не обещаю, что через 66 дней у вас будет новая жизнь. Я обещаю одно: вы сделаете 66 маленьких подходов. А дальше решает повторение.</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" data-name="Пропуск">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Главное</span>
+        <h2>Пропустили день —<br><span class="mark">ничего не сгорело</span></h2>
+        <p class="lead">Обычные трекеры устроены жестоко: пропустил день, счётчик обнулился, огонёк потух. И человек бросает не потому, что ленивый, а потому, что ему показали ноль там, где было восемнадцать честных дней.</p>
+      </div>
+
+      <div class="cols">
+        <div>
+          <div class="field" id="field" aria-hidden="true"></div>
+          <div class="legend">
+            <span><i style="background:var(--ink)" aria-hidden="true"></i> сделано полностью</span>
+            <span><i style="background:var(--mark)" aria-hidden="true"></i> лёгкая версия</span>
+            <span><i style="background:#DFDFDF" aria-hidden="true"></i> впереди</span>
+          </div>
+          <p class="small muted" style="margin-top:16px">Живой путь, а не картинка из рекламы: есть лёгкие дни и один честно пропущенный. Двадцать четыре дня позади, и ни один никуда не делся.</p>
+        </div>
+
+        <div class="source">
+          <blockquote>«Пропуск одной возможности выполнить действие не повлиял на процесс формирования привычки сколько-нибудь существенно»</blockquote>
+          <p class="cite">
+            Это вывод авторов того самого исследования, откуда взялась цифра 66.<br>
+            Lally P., van Jaarsveld C. H. M., Potts H. W. W., Wardle J. «How are habits formed: Modelling habit formation in the real world».
+            European Journal of Social Psychology, 2010, т. 40, с. 998–1009.
+            <a href="https://doi.org/10.1002/ejsp.674" target="_blank" rel="noopener">doi.org/10.1002/ejsp.674</a>
+          </p>
+          <div class="nums">
+            <div><div class="k">Медиана</div><div class="v">66 дней</div></div>
+            <div><div class="k">Разброс</div><div class="v">18–254 дня</div></div>
+            <div><div class="k">Участников</div><div class="v">96 человек</div></div>
+          </div>
+          <p class="small" style="margin-top:16px;color:var(--ink-3)">Поэтому 66 это честный ориентир, а не обещание. Единственное жёсткое правило в клубе: не пропускать два дня подряд.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiet">
+    <p class="wrap">Пропустил — вернулся. <span class="mark">Это и есть вся стратегия.</span></p>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="menu" data-name="Десяточка">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Выбор цели</span>
+        <h2>Выберите свою <span class="mark">десяточку</span></h2>
+        <p class="lead">Слева большая цель, справа то, с чего вы начнёте в понедельник. Своё задание мы подберём вместе на старте, здесь просто чтобы увидеть принцип.</p>
+      </div>
+      <div class="tiles" role="group" aria-label="Категории целей" id="tiles"></div>
+      <div class="goals" id="goals" aria-live="polite"></div>
+
+      <div class="goals own" style="margin-top:12px;padding:24px;border-top:0">
+        <label for="own-input">Ничего не подошло? Своя десяточка тоже годится.</label>
+        <div class="own-row">
+          <input id="own-input" type="text" maxlength="90" placeholder="например, 10 минут играть на гитаре" autocomplete="off">
+          <button class="btn btn-ghost btn-sm" type="button" id="own-btn">Посмотреть</button>
+        </div>
+        <p class="own-out" id="own-out">Напишите своими словами, а на старте вместе доведём формулировку до конкретной: с временем и привязкой к тому, что вы и так делаете.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Арифметика -->
+  <section class="slide" data-name="Арифметика">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Арифметика без вранья</span>
+        <h2>66 подходов<br>против девяти</h2>
+        <p class="lead">Честно посчитаем, потому что обычно в таких местах начинают округлять в свою пользу.</p>
+      </div>
+      <div class="maths">
+        <div class="m-card lead-card">
+          <div class="k">10 минут × 66 дней</div>
+          <div class="v">11 часов</div>
+          <div class="s">Это меньше, чем один длинный выходной в режиме «я наконец возьмусь». Весь челлендж целиком.</div>
+        </div>
+        <div class="m-card">
+          <div class="k">Десяточками</div>
+          <div class="v">66</div>
+          <div class="s">подходов за два месяца</div>
+        </div>
+        <div class="m-card dim">
+          <div class="k">Рывком по выходным</div>
+          <div class="v">9</div>
+          <div class="s">подходов за те же два месяца, и обычно бросают раньше</div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:18px;max-width:62ch">Дело не в часах. Привычку строят повторения в одном и том же контексте, а не суммарное время. Мозг любит повторения больше, чем героизм.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" data-name="Не подойдёт">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Честно</span>
+        <h2>Кому формат<br>не подойдёт</h2>
+        <p class="lead">Десять минут в день работают для навыков и ритуалов. Есть цели, где этот формат не поможет, и я не буду делать вид, что поможет.</p>
+      </div>
+      <div class="nope" id="nope"></div>
+      <p class="small muted" style="margin-top:20px;max-width:64ch">Если ваша цель в этом списке, напишите всё равно. Иногда её можно переформулировать так, что десяточка начнёт работать, а иногда честнее сказать, что вам нужен не челлендж, а другой инструмент.</p>
+    </div>
+  </section>
+
+  <section class="quiet">
+    <p class="wrap">Большие изменения почти всегда выглядят <span class="mark">скучно</span>, пока идут.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" data-name="Календарь">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Календарь потока</span>
+        <h2>Вот эти 66 дней<br>на настоящем календаре</h2>
+        <p class="lead">Группа идёт одним календарём и стартует вместе, поэтому войти на двадцатый день нельзя. Здесь нет таймера обратного отсчёта: только даты, которые можно посчитать самому.</p>
+      </div>
+      <div class="cal-top">
+        <div class="cal-stat"><div class="k">Старт, день 1</div><div class="v" id="c-start">—</div></div>
+        <div class="cal-stat"><div class="k">Осталось до старта</div><div class="v" id="c-left">—</div></div>
+        <div class="cal-stat fin"><div class="k">Финиш, день 66</div><div class="v" id="c-fin">—</div></div>
+      </div>
+      <div class="months" id="months"></div>
+      <p class="small muted" style="margin-top:20px;max-width:66ch" id="c-note">—</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" data-name="Ксения">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Кто ведёт</span>
+        <h2>Ксения Каплан</h2>
+        <p class="lead">Я не теоретик этого метода. Я прошла его на себе, и результаты оказались сильно больше, чем я рассчитывала. В третий поток иду вместе с вами, а не вместо вас.</p>
+      </div>
+      <div class="author">
+        <figure class="shot" style="margin:0;aspect-ratio:9/13">
+          <img src="author-heart.jpg" width="957" height="1700" alt="Ксения Каплан складывает руки сердечком" loading="lazy" style="object-position:50% 30%">
+        </figure>
+        <div>
+          <h3>Что я сама сделала благодаря десяточкам</h3>
+          <div class="a-list">
+            <div class="a-item"><span class="n">1</span><p><b>Начала вести соцсети без насилия над собой.</b> Когда-то мне было сложно выложить даже одну сторис. Сейчас в галерее пара тысяч фотографий, и навык растёт без надрыва и страха.</p></div>
+            <div class="a-item"><span class="n">2</span><p><b>Поняла, что брать две десяточки разом это перебор.</b> И стратегически неправильно. Та ошибка, от которой я теперь отговариваю всех на старте.</p></div>
+            <div class="a-item"><span class="n">3</span><p><b>Встроила в жизнь планирование,</b> хотя личная дисциплина всегда была моей больной темой.</p></div>
+          </div>
+          <div class="a-quote">Результаты тысячекратно превзошли ожидания. Вместе с планированием упорядочилось много сфер жизни в принципе.</div>
+          <p class="small muted" style="margin-top:18px">На следующие десяточки выбираю между ведением нового канала и десятиминутной метта-медитацией. Так что мы с вами в одной лодке.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" data-name="Условия">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Честный обмен</span>
+        <h2>Что входит<br>и что от вас нужно</h2>
+      </div>
+      <div class="cols">
+        <div class="col dark"><h3>Что входит в участие</h3><ul id="incl"></ul></div>
+        <div class="col"><h3>От вас</h3><ul id="yours"></ul></div>
+      </div>
+
+      <div class="barter">
+        <h3>Можно не деньгами</h3>
+        <p>Если формат откликается, а с деньгами сейчас тяжело, идём на бартер. Ваши навыки или услуги вместо оплаты. Напишите, что вы умеете, и обсудим. Это нормальный рабочий вариант, а не одолжение.</p>
+      </div>
+
+      <div class="beside" style="margin-top:12px">
+        <img src="author-avatar.jpg" alt="" aria-hidden="true" width="220" height="220">
+        <p>Я иду этот поток вместе с вами. У меня тоже бывают дни, когда десяточка делается через «ну ладно, хотя бы лёгкую версию». Мы не на пьедестале, мы рядом.</p>
+      </div>
+
+      <div class="price">
+        <div>
+          <span class="eyebrow">Третий поток</span>
+          <h2 style="margin-top:12px">Старт <span id="p-start">в понедельник</span></h2>
+          <p>Напишите мне — расскажу подробности, отвечу на вопросы и помогу выбрать десяточку, чтобы вы не взяли лишнего на старте.</p>
+        </div>
+        <div class="price-box">
+          <div class="p-row"><span>Участие на весь срок</span><b>3 000 ₽</b></div>
+          <div class="p-row"><span>Или</span><b>бартер</b></div>
+          <div class="p-row"><span>Длительность</span><b>66 дней</b></div>
+          <a class="btn btn-tg" href="https://t.me/ksenia_kaplan" target="_blank" rel="noopener">Написать Ксении</a>
+          <p class="p-note">Telegram <a href="https://t.me/ksenia_kaplan" target="_blank" rel="noopener">@ksenia_kaplan</a><br>Или поставьте реакцию в сторис, я напишу сама</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" data-name="Вопросы">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Вопросы</span>
+        <h2>Честные ответы</h2>
+      </div>
+      <div class="faq" id="faq"></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" data-name="Финал">
+    <div class="wrap">
+      <div class="final">
+        <span class="eyebrow">Третий поток</span>
+        <h2>Все хотят с понедельника. А мы просто возьмём и начнём</h2>
+        <p>По десять минут. Без насилия над собой. Одна десяточка и уютный чат на 66 дней.</p>
+        <a class="btn btn-tg" href="https://t.me/ksenia_kaplan" target="_blank" rel="noopener">
+          Написать Ксении
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="pirozhok">Жду готовеньких пирожочков</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Челлендж 10/66 · третий поток · ведёт Ксения Каплан</span>
+    <span>3 000 ₽ или бартер · <a href="https://t.me/ksenia_kaplan" target="_blank" rel="noopener">@ksenia_kaplan</a></span>
+  </div>
+</footer>
+
+<div class="dock">
+  <span class="m"><b>3 000 ₽ или бартер</b><span id="d-start">Старт в понедельник</span></span>
+  <a class="btn btn-tg" href="https://t.me/ksenia_kaplan" target="_blank" rel="noopener">Написать</a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var DAYS = 66;
+  var $ = function (id) { return document.getElementById(id); };
+  var MON = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var MON_T = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  var DOW = ['пн','вт','ср','чт','пт','сб','вс'];
+
+  function plural(n, a, b, c) {
+    var x = n % 10, y = n % 100;
+    if (x === 1 && y !== 11) return a;
+    if (x >= 2 && x <= 4 && (y < 12 || y > 14)) return b;
+    return c;
+  }
+
+  /* ---------- real cohort calendar: computed, so it can be checked ---------- */
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var dw = (today.getDay() + 6) % 7;
+  var start = new Date(today); start.setDate(start.getDate() + (dw === 0 ? 0 : 7 - dw));
+  var finish = new Date(start); finish.setDate(finish.getDate() + DAYS - 1);
+  var late = new Date(start); late.setDate(late.getDate() + 28);
+  var lateFin = new Date(late); lateFin.setDate(lateFin.getDate() + DAYS - 1);
+
+  function longDate(d) { return d.getDate() + ' ' + MON[d.getMonth()]; }
+  function same(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+
+  $('c-start').textContent = longDate(start);
+  $('c-fin').textContent = longDate(finish);
+  $('e-start').textContent = longDate(start);
+  $('p-start').textContent = longDate(start);
+  $('d-start').textContent = 'Старт ' + longDate(start);
+
+  var left = Math.round((start - today) / 86400000);
+  $('c-left').textContent = left === 0 ? 'Сегодня' : left + ' ' + plural(left, 'день', 'дня', 'дней');
+  $('c-note').textContent = 'Если начать в ближайший понедельник, последний день челленджа — ' + longDate(finish) +
+    '. Отложить на месяц значит финишировать не ' + longDate(finish) + ', а ' + longDate(lateFin) +
+    '. Два месяца никуда не денутся, они просто сдвинутся.';
+
+  (function () {
+    var cur = new Date(start.getFullYear(), start.getMonth(), 1);
+    var last = new Date(finish.getFullYear(), finish.getMonth(), 1);
+    var html = '';
+    while (cur <= last) {
+      var y = cur.getFullYear(), m = cur.getMonth();
+      var total = new Date(y, m + 1, 0).getDate();
+      var pad = (new Date(y, m, 1).getDay() + 6) % 7;
+      html += '<div class="month"><h4>' + MON_T[m] + '</h4><div class="dows">';
+      for (var w = 0; w < 7; w++) html += '<span>' + DOW[w] + '</span>';
+      html += '</div><div class="grid7">';
+      for (var p = 0; p < pad; p++) html += '<span class="d"></span>';
+      for (var d = 1; d <= total; d++) {
+        var date = new Date(y, m, d), cls = 'd';
+        if (date >= start && date <= finish) cls = 'd on';
+        if (same(date, start)) cls = 'd s';
+        if (same(date, finish)) cls = 'd f';
+        html += '<span class="' + cls + '">' + d + '</span>';
+      }
+      html += '</div></div>';
+      cur.setMonth(cur.getMonth() + 1);
+    }
+    $('months').innerHTML = html;
+  })();
+
+  /* ---------- six steps ---------- */
+  (function () {
+    var S = [
+      ['Выбираем одну десяточку', 'До старта разбираем, что именно вы будете делать. Не «заниматься спортом», а «десять минут зарядки после завтрака»: с конкретным временем и привязкой к тому, что вы и так делаете.'],
+      ['Придумываем лёгкую версию', 'Сразу решаем, как выглядит это действие в тяжёлый день. Десять минут превращаются в две. Придумать заранее важнее, чем само задание: в плохой день вы уже ничего решать не сможете.'],
+      ['Заходим в чат потока', 'В понедельник открывается общий чат. Уютно и по-доброму. Здесь принято поправлять друг другу короны, а не соревноваться, у кого дисциплина железнее.'],
+      ['Каждый день отмечаемся', 'Сделали, коротко написали в чат. Одна строчка, пара секунд. Именно эта отметка и держит весь челлендж: обещание при других работает иначе, чем обещание себе.'],
+      ['Не пропускаем два дня подряд', 'Пропустили день, ничего не сгорело, возвращаетесь завтра с того же места. Два подряд нельзя. Один день это жизнь. Два это уже привычка в обратную сторону.', 1],
+      ['На 66-й день смотрим, что выросло', 'Считаем не длину непрерывной цепочки, а сколько вы всего сделали. Подводим итоги и выбираем следующую десяточку, если захочется идти дальше.']
+    ];
+    $('steps').innerHTML = S.map(function (s, i) {
+      return '<article class="step' + (s[2] ? ' key' : '') + '"><span class="n">' +
+        ('0' + (i + 1)).slice(-2) + '</span><h3>' + s[0] + '</h3><p>' + s[1] + '</p></article>';
+    }).join('');
+  })();
+
+  /* ---------- 66-day field ---------- */
+  (function () {
+    var EASY = { 5: 1, 12: 1, 19: 1, 23: 1 }, SKIP = { 16: 1 }, NOW = 25, html = '';
+    for (var i = 1; i <= DAYS; i++) {
+      var c = 'cell';
+      if (i < NOW && !SKIP[i]) c += EASY[i] ? ' easy' : ' done';
+      html += '<div class="' + c + '">' + i + '</div>';
+    }
+    $('field').innerHTML = html;
+  })();
+
+  /* ---------- goal menu ---------- */
+  var CATS = [
+    { name: 'Тело и движение', sub: 'Самая частая цель', c: 'var(--c-body)', wide: 1, goals: [
+      ['Начать заниматься спортом', '10 минут зарядки сразу после того, как почистили зубы'],
+      ['Начать бегать', '10 минут: минута бега, минута шага, пять повторов'],
+      ['Растянуться', '10 минут растяжки вечером под один и тот же плейлист'],
+      ['Больше ходить', '10 минут прогулки после обеда, телефон в кармане']
+    ]},
+    { name: 'Еда, сон, самочувствие', sub: 'Про режим, а не про вес', c: 'var(--c-food)', wide: 1, goals: [
+      ['Питаться нормально', '10 минут вечером собрать завтрашний обед'],
+      ['Высыпаться', '10 минут ритуала отбоя, телефон на зарядку в другой комнате'],
+      ['Пить больше воды', '10 минут утром: стакан и наполненная бутылка на день']
+    ]},
+    { name: 'Учёба и языки', sub: 'Берётся частотой', c: 'var(--c-learn)', goals: [
+      ['Выучить английский', '10 минут карточек после завтрака'],
+      ['Начать читать', '10 минут книги вместо первой ленты вечером'],
+      ['Пройти наконец курс', '10 минут: один короткий урок или конспект одной темы']
+    ]},
+    { name: 'Работа и профессия', sub: 'Маленькими шагами', c: 'var(--c-work)', goals: [
+      ['Прокачаться в профессии', '10 минут разбора одного приёма из своей области'],
+      ['Вести канал', '10 минут черновика одного поста'],
+      ['Перестать тонуть в делах', '10 минут утром спланировать три главных дела']
+    ]},
+    { name: 'Деньги', sub: 'Привычка, а не доход', c: 'var(--c-money)', goals: [
+      ['Начать копить', '10 минут вечером записать траты дня'],
+      ['Понять, куда уходят деньги', '10 минут разобрать одну категорию трат или подписки'],
+      ['Разобраться с финансами', '10 минут одной темы финансовой грамотности']
+    ]},
+    { name: 'Голова и спокойствие', sub: 'Для тех, кто устал', c: 'var(--c-calm)', goals: [
+      ['Меньше тревожиться', '10 минут дыхания или медитации в одно и то же время'],
+      ['Вести дневник', '10 минут: три строчки о дне и одна благодарность'],
+      ['Меньше сидеть в телефоне', '10 минут вечером без экрана: чай, окно, тишина']
+    ]},
+    { name: 'Творчество и дом', sub: 'То, что откладывали', c: 'var(--c-make)', wide: 1, goals: [
+      ['Начать рисовать', '10 минут скетча одного предмета со стола'],
+      ['Писать тексты', '10 минут свободного письма без редактуры'],
+      ['Навести порядок', '10 минут на одну зону: ящик, полка, подоконник'],
+      ['Больше времени семье', '10 минут разговора или игры с ребёнком без телефона']
+    ]}
+  ];
+
+  (function () {
+    var tiles = $('tiles'), out = $('goals');
+    function show(i) {
+      var cat = CATS[i];
+      Array.prototype.forEach.call(tiles.children, function (t, j) {
+        t.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+      });
+      out.innerHTML =
+        '<div class="goals-head"><span class="c" style="background:' + cat.c + '"></span><h3>' + cat.name + '</h3></div>' +
+        cat.goals.map(function (g) {
+          return '<div class="goal"><span class="big">' + g[0] + '</span>' +
+            '<span class="arr" aria-hidden="true">&rarr;</span>' +
+            '<span class="ten">' + g[1] + '</span></div>';
+        }).join('');
+    }
+    CATS.forEach(function (cat, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tile' + (cat.wide ? ' wide' : '');
+      b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = '<span class="c" style="background:' + cat.c + '"></span>' + cat.name +
+                    '<span class="sub">' + cat.sub + '</span>';
+      b.addEventListener('click', function () { show(i); });
+      tiles.appendChild(b);
+    });
+    show(0);
+  })();
+
+  /* ---------- own goal: reflects what the visitor typed, nothing is sent ---------- */
+  (function () {
+    var input = $('own-input'), out = $('own-out'), btn = $('own-btn');
+    var base = out.textContent;
+    function render() {
+      var v = input.value.trim();
+      if (!v) { out.textContent = base; return; }
+      out.innerHTML = 'Ваша десяточка: <b>' + v.replace(/[<>&]/g, '') + '</b>. ' +
+        'На старте доведём формулировку до конкретной: во сколько и сразу после какого дела. ' +
+        'И придумаем лёгкую версию на тяжёлый день.';
+    }
+    btn.addEventListener('click', render);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') render(); });
+  })();
+
+  /* ---------- where the format does not work ---------- */
+  (function () {
+    var N = [
+      ['Бросить курить', 'Это отказ, а не добавление действия. Тут нужна помощь специалиста, и десять минут её не заменят.'],
+      ['Похудеть на N килограммов', 'Десять минут активности почти не двигают вес. Можно взять пищевую привычку, но килограммов я не обещаю.'],
+      ['Пробежать марафон', 'Подготовка требует длинных тренировок. Можно взять «начать бегать» как первую ступень.'],
+      ['Ремонт, квартира, закрыть кредит', 'Это проекты и финансовые результаты, а не ежедневная практика. Такие цели проваливаются чаще всего.'],
+      ['Выучить язык до свободного уровня', '66 раз по 10 минут это 11 часов. Хватит на привычку и первые сотни слов, но не на уровень.'],
+      ['Тревожное расстройство, депрессия', 'Практики не заменяют терапию. Если тяжело, пожалуйста, к специалисту.']
+    ];
+    var x = '<span class="x" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>';
+    $('nope').innerHTML = N.map(function (n) {
+      return '<div class="nope-row">' + x + '<div><b>' + n[0] + '</b><span>' + n[1] + '</span></div></div>';
+    }).join('');
+  })();
+
+  /* ---------- lists ---------- */
+  (function () {
+    var tick = '<span class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" aria-hidden="true"><path d="M4 13l5 5L20 6"/></svg></span>';
+    $('incl').innerHTML = [
+      ['Разбор и выбор задания', 'до старта, чтобы вы не взяли лишнего'],
+      ['Лёгкая версия задания', 'придуманная заранее, на тяжёлый день'],
+      ['Закрытый чат потока', 'на все 66 дней, уютно и без токсичности'],
+      ['Ежедневные отметки', 'одна строчка, пара секунд'],
+      ['Поддержка и помощь с возвращением', 'если выпали на несколько дней'],
+      ['Итоги на 66-й день', 'и выбор следующей десяточки, если захочется']
+    ].map(function (r) { return '<li>' + tick + '<span><b>' + r[0] + '</b> ' + r[1] + '</span></li>'; }).join('');
+
+    $('yours').innerHTML = [
+      ['Стремление к новому.', 'Желание попробовать, а не уверенность, что получится.'],
+      ['Желание поправлять друг другу короны', 'вместо критики. Это главное правило чата.'],
+      ['Десять минут в день.', 'Честных, а не идеальных.'],
+      ['Одна десяточка, а не три.', 'Проверено на себе: больше это хуже.']
+    ].map(function (r) { return '<li>' + tick + '<span><b>' + r[0] + '</b> ' + r[1] + '</span></li>'; }).join('');
+  })();
+
+  /* ---------- faq ---------- */
+  (function () {
+    var F = [
+      ['А если я пропущу день?', 'Ничего не сгорит и начинать заново не придётся. В исследовании, откуда взялась цифра 66, прямо сказано: пропуск одной возможности выполнить действие не влияет на формирование привычки существенно. Возвращаетесь на следующий день с того же места. Единственное, о чём я прошу всерьёз: не пропускать два дня подряд.'],
+      ['У меня совсем нет силы воли. Получится?', 'Вся система построена на том, что силы воли нет ни у кого. Десять минут выбраны именно потому, что на такой объём воля не требуется: сопротивление не успевает включиться. Плюс чат, ежедневная отметка и лёгкая версия на плохой день. Три внешние опоры вместо одной внутренней, которая всегда подводит.'],
+      ['Я всегда бросаю на второй неделе', 'Бросают не от лени, а от обнулённого счётчика. Здесь считается не длина цепочки, а сколько вы всего сделали. Плюс на старте мы заранее придумываем лёгкую версию задания, чтобы в тяжёлый день было куда отступить, а не только куда упасть.'],
+      ['Можно вписаться позже?', 'Нет, и это честно: группа идёт одним календарём, обсуждает одни и те же дни и подводит итоги вместе. Присоединиться на двадцатый день означает оказаться в чужом разговоре. Если этот поток не получается, напишите, скажу когда будет следующий.'],
+      ['Сколько человек в группе?', 'Столько, чтобы сохранялась та самая ламповая атмосфера. В чате на сто человек она не живёт: там перестают замечать друг друга. Точное число скажу в личке, когда будем обсуждать ваше участие.'],
+      ['Нужно ли отчитываться?', 'Нет, отчётов на страницу не будет. Одна короткая строчка в чат, что десяточка сделана. Пара секунд. Это нужно не для контроля, а потому что обещание, произнесённое при других, работает иначе, чем обещание себе.'],
+      ['Можно взять две привычки сразу?', 'Лучше одну. Я пробовала две разом, это перебор и стратегически неправильно: обе проседают. Если очень хочется второй, возьмёте её следующим потоком, когда первая уже будет держаться сама.'],
+      ['Какое задание выбрать?', 'Разберём вместе на старте. Главное правило, выученное на своём опыте: одна десяточка, а не две и не три. Две разом это перебор и стратегически неправильно, проверено лично. И действие должно быть конкретным, с временем и привязкой к тому, что вы и так делаете.'],
+      ['Будет ли результат?', 'Честно: гарантировать чужой результат невозможно, он зависит от того, что вы выберете и будете ли делать. Что я обещаю точно: формат, который снимает сопротивление, атмосферу без токсичности и поддержку все 66 дней. У меня и у участников двух прошлых потоков метод сработал, и я опираюсь на этот опыт, а не на обещания.'],
+      ['Что такое бартер?', 'Вместо оплаты договариваемся об обмене: ваши навыки или услуги вместо денег. Напишите, что вы умеете, и обсудим. Рабочий вариант, если формат откликается, а с деньгами сейчас тяжело.']
+    ];
+    $('faq').innerHTML = F.map(function (f, i) {
+      return '<details' + (i === 0 ? ' open' : '') + '><summary>' + f[0] +
+        '<span class="sign" aria-hidden="true"></span></summary><p>' + f[1] + '</p></details>';
+    }).join('');
+  })();
+
+  /* ---------- stories progress bar ---------- */
+  (function () {
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var bar = $('progress');
+    bar.innerHTML = slides.map(function (s) {
+      return '<button class="seg" type="button" title="' + s.getAttribute('data-name') + '"><i></i></button>';
+    }).join('');
+    bar.removeAttribute('aria-hidden');
+    bar.setAttribute('aria-label', 'Разделы страницы');
+
+    var segs = Array.prototype.slice.call(bar.querySelectorAll('.seg'));
+    segs.forEach(function (seg, i) {
+      seg.addEventListener('click', function () {
+        slides[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    var ticking = false;
+    function paint() {
+      ticking = false;
+      var top = window.scrollY + 70;
+      for (var i = 0; i < slides.length; i++) {
+        var s = slides[i], a = s.offsetTop, h = s.offsetHeight;
+        var pct = top <= a ? 0 : (top >= a + h ? 1 : (top - a) / h);
+        segs[i].firstChild.style.width = (pct * 100).toFixed(1) + '%';
+      }
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    window.addEventListener('resize', paint);
+    paint();
+  })();
+})();
+</script>
+</body>
+</html>
